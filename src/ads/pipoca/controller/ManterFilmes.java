@@ -5,18 +5,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import ads.pipoca.model.dao.FilmeDAO;
 import ads.pipoca.model.entity.Filme;
 import ads.pipoca.model.entity.Genero;
+import ads.pipoca.model.service.FilmeService;
 import ads.pipoca.model.service.GeneroService;
 
 public class ManterFilmes {
 
 	public void listarFilme(int id) throws IOException {
-		FilmeDAO filmeDAO = new FilmeDAO();
+		FilmeService filmeService = new FilmeService();
 		Filme filme;
 		filme = new Filme();
-		filme = filmeDAO.buscarFilme(id);
+		filme = filmeService.buscarFilme(id);
 		System.out.println(filme);
 	}
 
@@ -58,8 +58,9 @@ public class ManterFilmes {
 
 		filme.setPopularidade(100.25);
 		filme.setPosterPath("img/naufrago.jpg");
-		FilmeDAO filmeDAO = new FilmeDAO();
-		int id = filmeDAO.inserirFilme(filme);
+		
+		FilmeService filmeService = new FilmeService();
+		int id = filmeService.inserirFilme(filme);
 		System.out.println("Id gerado: "+id);
 		return id;
 	}
